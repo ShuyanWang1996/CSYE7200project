@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Csye7200 Project Group1</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Reference to the Bing Maps SDK -->
+    <script type='text/javascript'
+            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&setLang=en&key=AsckUQaJUOWvEogM3XMSDBXikuTZjKV-h-BJggU-fdNH4kg63A-duDUp770MeFgz' 
+            async defer></script>
+    
+    <script type='text/javascript'>
+    function GetMap()
+    {
+        var map = new Microsoft.Maps.Map('#myMap');
+
+        //Add your post map load code here.
+    }
+    </script>
+    <!-- jquery -->
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <!-- Css -->
+    <style type="text/css">
+        #up-map-div{
+            width:300px;
+            height:100px;
+            top:30px;
+            left:30px;
+            position:absolute;
+            z-index:9999;
+            border:1px solid blue;
+            background-color:#FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div id="myMap" style="width:100%;height:100%;"></div>
+    <div id="up-map-div">
+        <form id="input_phone">
+            <div class="container-fluid">
+            <div class="row">
+                <b>CoronaVirus Tracer (Csye7200)</b>
+            </div>
+            <div class="row" style="padding-top:5px;">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon" id="sizing-addon3">Phone</span>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="XXX-XXXX-XXX" aria-describedby="sizing-addon3">
+                </div>
+            </div>
+            <div class="row" style="padding-top:5px;">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" onclick="find_patient()">Patient</button>
+                    <button type="button" class="btn btn-default" onclick="find_suspected()">Suspected</button>
+                    <button type="button" class="btn btn-default" onclick="position()">Position</button>
+                    <button type="button" class="btn btn-default" onclick="area()">Area</button>
+                </div>
+            </div>
+            </div>
+        </form> 
+    </div>
+    </div>
+    <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

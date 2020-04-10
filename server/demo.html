@@ -1,0 +1,296 @@
+<html>
+	<head>
+		<title>CSYE7200-Demo</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body onload="draw();">
+	</body>
+		<script src="./js/three.js"></script>
+		<script src="./js/dat.gui.min.js"></script>
+		<script src="./js/stats.min.js"></script>
+		<script src="./js/OrbitControls.js"></script>
+<script>
+ var renderer;
+    function initRender() {
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        //告诉渲染器需要阴影效果
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 默认的是，没有设置的这个清晰 THREE.PCFShadowMap
+        document.body.appendChild(renderer.domElement);
+    }
+
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 40, 100);
+        camera.lookAt(new THREE.Vector3(0,0,0));
+    }
+
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    //初始化dat.GUI简化试验流程
+    var gui;
+    function initGui() {
+        //声明一个保存需求修改的相关数据的对象
+        gui = {
+		PEOPLE:1000,
+		DAY:0,
+		INFECTED:1,//初始感染数量
+		SPREAD:0.9,//传播率i
+		LATENT:14,//潜伏时间，14天
+		ACTIVITY:0.9,//流动意向
+		CAPCITY:10//医院床位       
+ 	};
+        var datGui = new dat.GUI();
+        //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
+	datGui.add(gui,"PEOPLE",0,2000);
+        datGui.add(gui,"DAY",0,30);
+	datGui.add(gui,"INFECTED",0,10);
+        datGui.add(gui,"SPREAD",0,1);
+        datGui.add(gui,"LATENT",0,30);
+        datGui.add(gui,"ACTIVITY",0,1);
+        datGui.add(gui,"CAPCITY",0,1000);
+    }
+
+    var light;
+    function initLight() {
+        scene.add(new THREE.AmbientLight(0x444444));
+
+        light = new THREE.PointLight(0xffffff);
+        light.position.set(15,30,10);
+
+        //告诉平行光需要开启阴影投射
+        light.castShadow = true;
+
+        scene.add(light);
+    }
+
+    var health_people_n,infected_people_n,health_people_y,infected_people_y;
+    function initModel() {
+	var starGeometry = new THREE.Geometry();
+	for (var i=0;i<0;i++){
+	    var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(50);
+            vertex.y = THREE.Math.randFloatSpread(50);
+            vertex.z = THREE.Math.randFloatSpread(50);
+
+            starGeometry.vertices.push(vertex);
+        }
+        health_people_n = new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0x888888}));
+	var starGeometry2 = new THREE.Geometry();
+        for (var i=0;i<0;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(50);
+            vertex.y = THREE.Math.randFloatSpread(50);
+            vertex.z = THREE.Math.randFloatSpread(50);
+
+            starGeometry2.vertices.push(vertex);
+        }
+        infected_people_n = new THREE.Points(starGeometry2,new THREE.PointsMaterial({color:0xFF3300}));
+        scene.add(health_people_n);
+        scene.add(infected_people_n);
+        var starGeometry3 = new THREE.Geometry();
+        for (var i=0;i<0;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(10)-50;
+            vertex.y = THREE.Math.randFloatSpread(10);
+            vertex.z = THREE.Math.randFloatSpread(10);
+
+            starGeometry3.vertices.push(vertex);
+        }
+        health_people_y = new THREE.Points(starGeometry3,new THREE.PointsMaterial({color:0x888888}));
+        var starGeometry4 = new THREE.Geometry();
+        for (var i=0;i<0;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(10)-50;
+            vertex.y = THREE.Math.randFloatSpread(10);
+            vertex.z = THREE.Math.randFloatSpread(10);
+
+            starGeometry4.vertices.push(vertex);
+        }
+        infected_people_y = new THREE.Points(starGeometry4,new THREE.PointsMaterial({color:0xFF3300}));
+        scene.add(health_people_y);
+        scene.add(infected_people_y);
+	//文字
+	var loader = new THREE.FontLoader();
+	loader.load( './fonts/helvetiker_regular.typeface.json', 
+	    function ( font ) {
+	    var geometry = new THREE.TextGeometry( 'Public', 
+	    {
+         	font: font,
+         	size: 5,
+         	height: 1,
+         	curveSegments: 12,
+         	bevelEnabled: true,
+         	bevelThickness: 0.1,
+         	bevelSize: 0.05,
+         	bevelSegments: 3
+	    });
+	    var meshMaterial = new THREE.MeshNormalMaterial({
+            //        flatShading: THREE.FlatShading,
+             //       transparent: true,
+              //      opacity: 0.9,
+		      color:0xCCFFFF
+	    });
+            var mesh = new THREE.Mesh(geometry, meshMaterial);
+            mesh.position.set(-10, 30, 0);
+            scene.add(mesh);
+      });
+        var loader2 = new THREE.FontLoader();
+        loader2.load( './fonts/helvetiker_regular.typeface.json',
+            function ( font ) {
+            var geometry = new THREE.TextGeometry( 'Quarantine',
+            {
+         	font: font,
+         	size: 5,
+         	height: 1,
+         	curveSegments: 12,
+        	bevelEnabled: true,
+         	bevelThickness: 0.1,
+         	bevelSize: 0.05,
+         	bevelSegments: 3
+            });
+            var meshMaterial = new THREE.MeshNormalMaterial({
+                  //  flatShading: THREE.FlatShading,
+                  //  transparent: true,
+                  //  opacity: 0.9,
+		    color: 0xCCFFFF
+            });
+            var mesh = new THREE.Mesh(geometry, meshMaterial);
+            mesh.position.set(-70, 10, 0);
+            scene.add(mesh);
+      });
+    }
+    //初始化性能插件
+    var stats;
+    function initStats() {
+        stats = new Stats();
+        document.body.appendChild(stats.dom);
+    }
+
+    //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+    var controls;
+    function initControls() {
+
+        controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+        // 如果使用animate方法时，将此函数删除
+        controls.addEventListener( 'change', render );
+        // 使动画循环使用时阻尼或自转 意思是否有惯性
+        controls.enableDamping = true;
+        //动态阻尼系数 就是鼠标拖拽旋转灵敏度
+        //controls.dampingFactor = 0.25;
+        //是否可以缩放
+        controls.enableZoom = true;
+        //是否自动旋转
+        controls.autoRotate = false;
+        //设置相机距离原点的最远距离
+        controls.minDistance  = 100;
+        //设置相机距离原点的最远距离
+        controls.maxDistance  = 200;
+        //是否开启右键拖拽
+        controls.enablePan = true;
+    }
+
+    function render() {
+        renderer.render( scene, camera );
+    }
+
+    //窗口变动触发的函数
+    function onWindowResize() {
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        render();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+    }
+
+    function animate() {
+        //更新控制器
+        render();
+
+        //更新性能插件
+        stats.update();
+
+        //更新相关位置
+        var people_amount = gui.PEOPLE;
+        var day = gui.DAY;
+        var infected_amount = gui.INFECTED;
+        var spread  = gui.SPREAD;
+        var latent = gui.LATENT;
+	var activity = gui.ACTIVITY;
+	var capcity = gui.CAPCITY;
+
+        m_in=infected_amount*Math.pow((1+spread*activity),day)>people_amount?people_amount:infected_amount*Math.pow((1+spread*activity),day);
+        hn=people_amount-m_in;
+	m_iy=m_in>capcity?capcity:m_in;
+	m_in=m_in-m_iy;
+	console.log(hn+","+m_in+","+m_iy+".");
+        var starGeometry1 = new THREE.Geometry();
+        for (var i=0;i<hn;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(50);
+            vertex.y = THREE.Math.randFloatSpread(50);
+            vertex.z = THREE.Math.randFloatSpread(50);
+
+            starGeometry1.vertices.push(vertex);
+        }
+	scene.remove(health_people_n);
+        health_people_n = new THREE.Points(starGeometry1,new THREE.PointsMaterial({color:0x888888}));
+	scene.add(health_people_n);
+
+        var starGeometry2 = new THREE.Geometry();
+        for (var i=0;i<m_in;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(50);
+            vertex.y = THREE.Math.randFloatSpread(50);
+            vertex.z = THREE.Math.randFloatSpread(50);
+
+            starGeometry2.vertices.push(vertex);
+        }
+	scene.remove(infected_people_n);
+        infected_people_n = new THREE.Points(starGeometry2,new THREE.PointsMaterial({color:0xFF3300}));
+	scene.add(infected_people_n);
+        
+	var starGeometry4 = new THREE.Geometry();
+        for (var i=0;i<m_iy;i++){
+            var vertex = new THREE.Vector3();
+            vertex.x = THREE.Math.randFloatSpread(10)-50;
+            vertex.y = THREE.Math.randFloatSpread(10);
+            vertex.z = THREE.Math.randFloatSpread(10);
+
+            starGeometry4.vertices.push(vertex);
+        }
+	scene.remove(infected_people_y)
+        infected_people_y = new THREE.Points(starGeometry4,new THREE.PointsMaterial({color:0xFF3300}));
+	scene.add(infected_people_y)
+
+        controls.update();
+
+        requestAnimationFrame(animate);
+    }
+
+    function draw() {
+        initGui();
+        initRender();
+        initScene();
+        initCamera();
+        initLight();
+        initModel();
+        initControls();
+        initStats();
+
+        animate();
+        window.onresize = onWindowResize;
+    }
+
+</script>
+</html>
