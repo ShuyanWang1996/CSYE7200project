@@ -39,7 +39,7 @@ object analyze_process{
         val base_df = CsvParser(f.getPath, sparkSession).parse()
         base_df.show()
         //write to MongoDB
-        MongoSpark.save(base_df.write.mode("overwrite"))
+        MongoSpark.save(base_df.write.mode("append"))
     })
   }
 }
