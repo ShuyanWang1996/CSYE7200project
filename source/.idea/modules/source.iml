@@ -12,21 +12,21 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.0:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.typelevel:macro-compat_2.12:1.1.1:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.typelevel:machinist_2.12:0.6.1:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.spire-math:spire_2.12:0.13.0:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.spire-math:spire-macros_2.12:0.13.0:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.scalanlp:breeze_2.12:0.13.2:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.scalanlp:breeze-macros_2.12:0.13.2:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.apache.spark:spark-streaming_2.12:2.4.5:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.apache.spark:spark-mllib_2.12:2.4.5:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.apache.spark:spark-mllib-local_2.12:2.4.5:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: org.apache.spark:spark-graphx_2.12:2.4.5:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: net.sourceforge.f2j:arpack_combined_all:0.1:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: net.sf.opencsv:opencsv:2.3:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: com.github.rwl:jtransforms:2.4.0:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: com.github.fommil.netlib:core:1.1.2:jar" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="sbt: com.chuusai:shapeless_2.12:2.3.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.12:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:machinist_2.12:0.6.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.spire-math:spire_2.12:0.13.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.spire-math:spire-macros_2.12:0.13.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalanlp:breeze_2.12:0.13.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalanlp:breeze-macros_2.12:0.13.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.spark:spark-streaming_2.12:2.4.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.spark:spark-mllib_2.12:2.4.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.spark:spark-mllib-local_2.12:2.4.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.spark:spark-graphx_2.12:2.4.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: net.sourceforge.f2j:arpack_combined_all:0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: net.sf.opencsv:opencsv:2.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.rwl:jtransforms:2.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.fommil.netlib:core:1.1.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.chuusai:shapeless_2.12:2.3.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.mongodb.spark:mongo-spark-connector_2.12:2.4.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.mongodb:mongo-java-driver:3.11.0-rc0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.mongodb:bson:4.0.2:jar" level="project" />
