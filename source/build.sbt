@@ -18,3 +18,5 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % "test"
 libraryDependencies += "org.mongodb" %% "casbah" % "3.1.1" pomOnly()
 libraryDependencies ++= List("spray-json") map {c => sprayGroup %% c % sprayJsonVersion}
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.0"
+libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.10.3"
+
