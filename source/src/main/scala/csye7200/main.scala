@@ -10,6 +10,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types._
 import com.mongodb.spark.config._
+import csye7200.data.Generator
 
 object analyze_process{
   def get_fileList(path:String):List[File]={
@@ -47,7 +48,7 @@ object analyze_process{
 
 object simulation_process{
   def start()={
-
+    Generator.simulate()
   }
 }
 
