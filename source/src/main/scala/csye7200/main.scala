@@ -46,14 +46,15 @@ object analyze_process{
 }
 
 object simulation_process{
-  def start()={
-
-  }
+//  def start()={
+//
+//  }
 }
 
 object main {
   def main(args: Array[String]): Unit = {
     println("Entry")
-    analyze_process.start()
+//    analyze_process.start()
+    simulation_process.start()
   }
 }
