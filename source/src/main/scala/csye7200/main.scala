@@ -46,9 +46,9 @@ object analyze_process{
 }
 
 object simulation_process{
-//  def start()={
-//
-//  }
+  def start()={
+
+  }
 }
 
 object main {
