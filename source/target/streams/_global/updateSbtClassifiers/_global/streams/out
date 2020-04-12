@@ -1,4 +1,2 @@
-[warn] insecure HTTP request is deprecated 'http://repo.artima.com/releases'; switch to HTTPS or opt-in as ("scalatest" at "http://repo.artima.com/releases").withAllowInsecureProtocol(true)
-[warn] insecure HTTP request is deprecated 'http://repo.artima.com/releases'; switch to HTTPS or opt-in as ("scalatest" at "http://repo.artima.com/releases").withAllowInsecureProtocol(true)
 [debug] Other repositories:
 [debug] Default repositories:

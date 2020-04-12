@@ -1,5 +1,4 @@
-[warn] insecure HTTP request is deprecated 'http://repo.artima.com/releases'; switch to HTTPS or opt-in as ("scalatest" at "http://repo.artima.com/releases").withAllowInsecureProtocol(true)
 [debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/D:/Git/project/corona/CSYE7200project/source/"), "source")...
-[debug] Done updating ProjectRef(uri("file:/D:/Git/project/corona/CSYE7200project/source/"), "source")
+[debug] Updating ProjectRef(uri("file:/Users/wangshuyan/Desktop/Big%20Data%20System%20Engineering%20Using%20Scala/CSYE7200project/source/"), "source")...
+[debug] Done updating ProjectRef(uri("file:/Users/wangshuyan/Desktop/Big%20Data%20System%20Engineering%20Using%20Scala/CSYE7200project/source/"), "source")
 [warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.
