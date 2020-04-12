@@ -10,8 +10,8 @@ case class Generator (lat1: float, lat2: float, long1: float, long2: float) {
   val latDif = lat2 - lat1
   val longDif = long1 - long2
   val N = 1000000;
-  val arrPhone = Array[Long](N)
-  val arrTrace = Array[Trace](N*10)
+  val arrPhone = Seq[Long](N)
+  val arrTrace = Seq[Trace](N*10)
 
   def simulate () = {
     for (i <- 1 to N-1){
@@ -20,6 +20,7 @@ case class Generator (lat1: float, lat2: float, long1: float, long2: float) {
         arrTrace(i*10+j) = new Trace(arrPhone(i),new Date(2020,4,j),lat1 + Random.nextFloat() * latDif,long1 + Random.nextFloat() * longDif)
       }
     }
+
   }
 
 }
