@@ -41,7 +41,7 @@ object analyze_process{
 //    })
     //Read China data from mongoDB
     val df_China = sparkSession.read.format("mongo").option("uri", "mongodb://49.235.244.219/csye7200.train_data_China").load()
-    DTStrategy(df_China,sparkSession).start()
+    DTStrategy().start()
     val df_US = sparkSession.read.format("mongo").option("uri", "mongodb://49.235.244.219/csye7200.test_data_US").load()
   }
 }
