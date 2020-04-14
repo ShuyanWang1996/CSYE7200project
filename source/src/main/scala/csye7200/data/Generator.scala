@@ -14,16 +14,15 @@ object Generator{
   val lat2:Double = 42.229478
   val long1:Double = -71.056530
   val long2:Double = -71.188359
-  val N = 1000000;
-  val phones = new Array[Long](N)
-  val traces = new Array[Trace](N*10)
-  val jsonFile = "simulation.json"
 
   object Protocol extends DefaultJsonProtocol{
     implicit val traceFormat = jsonFormat4(Trace.apply)
   }
 
-  def simulate () = {
+  def simulate (N:Int=1000000) = {
+    val phones = new Array[Long](N)
+    val traces = new Array[Trace](N*10)
+    val jsonFile = "simulation.json"
     import Protocol._
     for (i <- 0 to N-1){
       phones(i) = Random.nextInt(900000000)+100000000
@@ -36,7 +35,7 @@ object Generator{
       writer.write(elem.toJson.toString()+"\n")
     }
     writer.close()
-    ExportHelper(jsonFile,"traces")
+    ExportHelper(jsonFile,"traces","json").exportTo()
   }
 
 }

@@ -8,7 +8,7 @@ case class CsvParser(filename: String, session:SparkSession){
   def parse(): DataFrame = {
     //The ETL Process
     val columnNames = Seq("Country" ,"Province", "Datetime", "Confirmed", "Deaths", "Recovered")
-    val df = session.read.option("header", "true").csv(filename)
+    val df:DataFrame = session.read.option("header", "true").csv(filename)
     df.withColumnRenamed( "Country/Region" , "Country")
       .withColumnRenamed( "Province/State" , "Province")
       .withColumnRenamed( "Last Update" , "Datetime")
@@ -16,5 +16,6 @@ case class CsvParser(filename: String, session:SparkSession){
       .withColumnRenamed( "Province_State" , "Province")
       .withColumnRenamed( "Last_Update" , "Datetime")
       .select(columnNames.head, columnNames.tail: _*)
+    df
   }
 }
