@@ -36,7 +36,7 @@ object Generator{
       writer.write(elem.toJson.toString()+"\n")
     }
     writer.close()
-    ExportHelper(jsonFile)
+    ExportHelper(jsonFile,"traces")
   }
 
 }
