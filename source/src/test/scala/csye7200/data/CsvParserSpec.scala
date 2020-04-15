@@ -8,7 +8,7 @@ import scala.util._
 
 class CsvParserSpec extends FlatSpec with Matchers{
 
-//  behavior of "csv file"
+  behavior of "csv file parsing"
 
   it should "work for csv data" in {
 

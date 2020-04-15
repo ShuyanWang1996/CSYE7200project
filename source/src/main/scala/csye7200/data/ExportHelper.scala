@@ -20,7 +20,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
      .getOrCreate()
 
    val dataFrame: DataFrame = spark.read.format(format).load(jsonFile)
-
+   dataFrame.show()
    MongoSpark.save(dataFrame.write.mode("overwrite"))
    dataFrame
   }

@@ -7,5 +7,10 @@ import scala.util._
 
 class GeneratorSpec extends FlatSpec{
 
-  Generator.simulate(1)
+  behavior of "generate simple sample"
+
+  it should "generate ten rows data with the same phone" in{
+    Generator.simulate(1,"unit_test_generator")
+  }
+
 }

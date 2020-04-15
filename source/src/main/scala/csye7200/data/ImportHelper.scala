@@ -19,6 +19,7 @@ case class ImportHelper (collection: String) {
       .config("spark.mongodb.output.collection", collection)
       .getOrCreate()
     val dataFrame: DataFrame = spark.read.format("mongo").load()
+    dataFrame.show()
     dataFrame
   }
 }
