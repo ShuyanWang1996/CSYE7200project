@@ -1,2 +1,2 @@
-[{"test_id": 1, "test_content": "test_1"},
-  {"test_id": 2, "test_content": "test_2"}]
+{"test_id": 1, "test_content": "test_1"}
+{"test_id": 2, "test_content": "test_2"}

@@ -11,9 +11,9 @@ case class ImportHelper (collection: String) {
       .builder()
       .appName(this.getClass.getSimpleName)
       .master("local")
-      .config("spark.mongodb.output.uri", "mongodb://49.235.244.219:27017")
-      .config("spark.mongodb.output.database", "csye7200")
-      .config("spark.mongodb.output.collection", collection) //daily_reports
+      .config("spark.mongodb.input.uri", "mongodb://root:!Csye7200@49.235.244.219:27017")
+      .config("spark.mongodb.input.database", "csye7200")
+      .config("spark.mongodb.input.collection", collection) //daily_reports
       .getOrCreate()
     val dataFrame: DataFrame = spark.read.format("mongo").load()
     dataFrame

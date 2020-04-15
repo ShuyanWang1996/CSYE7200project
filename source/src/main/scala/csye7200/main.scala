@@ -25,7 +25,7 @@ object analyze_process{
       .config(sparkConf)
       .appName("csye_mongo")
       // Configuration for writing in a Mongo collection
-      .config("spark.mongodb.output.uri", "mongodb://49.235.244.219:27017")
+      .config("spark.mongodb.output.uri", "mongodb://root:!Csye7200@49.235.244.219:27017")
       .config("spark.mongodb.output.database", "csye7200")
       .config("spark.mongodb.output.collection", "test")//daily_reports
       .getOrCreate()

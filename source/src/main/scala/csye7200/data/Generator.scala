@@ -22,7 +22,7 @@ object Generator{
   def simulate (N:Int=1000000) = {
     val phones = new Array[Long](N)
     val traces = new Array[Trace](N*10)
-    val jsonFile = "simulation.json"
+    val jsonFile = "src/scala/csye7200/data/simulation.json"
     import Protocol._
     for (i <- 0 to N-1){
       phones(i) = Random.nextInt(900000000)+100000000
