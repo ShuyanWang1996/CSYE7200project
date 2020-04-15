@@ -6,14 +6,17 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 case class ImportHelper (collection: String) {
 
-  def importFrom():DataFrame= {
+  def importFrom():DataFrame = {
     val spark = SparkSession
       .builder()
       .appName(this.getClass.getSimpleName)
       .master("local")
-      .config("spark.mongodb.input.uri", "mongodb://root:!Csye7200@49.235.244.219:27017")
-      .config("spark.mongodb.input.database", "csye7200")
-      .config("spark.mongodb.input.collection", collection) //daily_reports
+      .config("spark.mongodb.input.uri", s"mongodb://root:!Csye7200@49.235.244.219:27017")
+      .config("spark.mongodb.input.database","csye7200")
+      .config("spark.mongodb.input.collection",collection)
+      .config("spark.mongodb.input.readPreference.name", "secondaryPreferred")
+      .config("spark.mongodb.output.database", "csye7200")
+      .config("spark.mongodb.output.collection", collection)
       .getOrCreate()
     val dataFrame: DataFrame = spark.read.format("mongo").load()
     dataFrame

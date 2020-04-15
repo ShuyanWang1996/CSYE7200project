@@ -23,9 +23,6 @@ class CsvParserSpec extends FlatSpec with Matchers{
     val parser = CsvParser("src/test/scala/csye7200/data/CsvDemo.csv",spark)
     val dataFrame = parser.parse()
     dataFrame.show()
-//    dataFrame should matchPattern{
-//      case Data =>
-//    }
   }
 
 }
