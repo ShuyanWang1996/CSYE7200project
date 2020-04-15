@@ -11,7 +11,7 @@ class ExportImportHelperSpec extends FlatSpec with Matchers{
   behavior of "json file I/O"
 
   it should "work for export" in {
-    val exportHelper = ExportHelper("src/test/scala/csye7200/data/JsonDemo.json","unit_test_io","json")
+    val exportHelper = ExportHelper("src/test/scala/csye7200/data/unit_test_io.json","unit_test_io","json")
     exportHelper.exportTo();
   }
 
@@ -23,7 +23,7 @@ class ExportImportHelperSpec extends FlatSpec with Matchers{
   it should "work for both export and import" in {
     val collection = "unit_test_io"
     println("DataFrame from ExportHelper")
-    val dataFrame1 = ExportHelper("src/test/scala/csye7200/data/JsonDemo.json",collection,"json").exportTo()
+    val dataFrame1 = ExportHelper("src/test/scala/csye7200/data/unit_test_io.json",collection,"json").exportTo()
     println("DataFrame from ImportHelper")
     val dataFrame2 = ImportHelper("unit_test_io").importFrom()
   }

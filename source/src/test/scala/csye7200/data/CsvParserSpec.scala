@@ -20,7 +20,7 @@ class CsvParserSpec extends FlatSpec with Matchers{
       .config("spark.mongodb.output.database", "csye7200")
       .getOrCreate()
 
-    val parser = CsvParser("src/test/scala/csye7200/data/CsvDemo.csv",spark)
+    val parser = CsvParser("src/test/scala/csye7200/data/unit_test_parse.csv",spark)
     val dataFrame = parser.parse()
     dataFrame.show()
   }

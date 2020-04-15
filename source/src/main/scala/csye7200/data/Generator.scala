@@ -22,7 +22,7 @@ object Generator{
   def simulate (N:Int=1000000, collection:String="traces") = {
     val phones = new Array[Long](N)
     val traces = new Array[Trace](N*10)
-    val jsonFile = s"src/main/scala/csye7200/data/$collection.json"
+    val jsonFile = s"src/test/scala/csye7200/data/$collection.json"
     import Protocol._
     for (i <- 0 to N-1){
       phones(i) = Random.nextInt(900000000)+100000000
@@ -36,8 +36,6 @@ object Generator{
     }
     writer.close()
     ExportHelper(jsonFile,collection,"json").exportTo()
-
-
 
   }
 
